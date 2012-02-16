@@ -3,14 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
 namespace IsolatedStorage
@@ -33,7 +26,8 @@ namespace IsolatedStorage
             myStore.CreateDirectory("MyFolder");
 
             // Specify the file path and options.
-            using (var isoFileStream = new IsolatedStorageFileStream("MyFolder\\myFile.txt", FileMode.OpenOrCreate, myStore))
+            using (var isoFileStream = new
+                IsolatedStorageFileStream("MyFolder\\myFile.txt", FileMode.OpenOrCreate, myStore))
             {
                 //Write the data
                 using (var isoFileWriter = new StreamWriter(isoFileStream))
@@ -55,7 +49,7 @@ namespace IsolatedStorage
                     // Read the data.
                     using (var isoFileReader = new StreamReader(isoFileStream))
                     {
-                        ReadText.Text = isoFileReader.ReadLine();
+                        ReadText.Text = isoFileReader.ReadToEnd();
                     }
                 }
             }
@@ -66,11 +60,12 @@ namespace IsolatedStorage
             }
         }
 
-        readonly IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+        readonly IsolatedStorageSettings settings =
+            IsolatedStorageSettings.ApplicationSettings;
 
         private void SettingButton_Click(object sender, RoutedEventArgs e)
         {
-            if (settings.Contains(SettingKey.Text))
+            if (!settings.Contains(SettingKey.Text))
             {
                 settings.Add(SettingKey.Text, SettingValue.Text);
             }
