@@ -1,0 +1,68 @@
+﻿<phone:PhoneApplicationPage x:Class="IsolatedStorage.MainPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                            mc:Ignorable="d"
+                            d:DesignWidth="480"
+                            d:DesignHeight="768"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <!--TitlePanel contains the name of the application and page title-->
+    <controls:Pivot Title="MY APPLICATION">
+        <controls:PivotItem Header="settings">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ListBox x:Name="SettingsListBox"
+                         FontSize="36"
+                         Margin="0,0,0,20" />
+                <StackPanel Grid.Row="1">
+                    <TextBox x:Name="SettingKey" />
+                    <TextBox x:Name="SettingValue" />
+                    <Button x:Name="SettingButton"
+                            Content="Save"
+                            Click="SettingButton_Click" />
+                </StackPanel>
+            </Grid>
+        </controls:PivotItem>
+        <controls:PivotItem Header="files">
+            <StackPanel>
+                <TextBox x:Name="WriteText"
+                         Height="200"
+                         Margin="0,0,0,0"
+                         TextWrapping="Wrap"
+                         Text="Write a lot of text to a file, stored in IsolatedStorage." />
+                <Button x:Name="WriteButton"
+                        Content="Write"
+                        Width="150"
+                        HorizontalAlignment="Left"
+                        Click="WriteButton_Click" />
+                <TextBlock x:Name="ReadText"
+                           Height="200"
+                           Margin="0,50,0,0"
+                           FontSize="36"
+                           TextWrapping="Wrap"
+                           Text="" />
+                <Button x:Name="ReadButton"
+                        Content="Read"
+                        Width="150"
+                        HorizontalAlignment="Left"
+                        Click="ReadButton_Click" />
+            </StackPanel>
+        </controls:PivotItem>
+
+    </controls:Pivot>
+
+</phone:PhoneApplicationPage>
